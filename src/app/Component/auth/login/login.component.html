@@ -1,0 +1,43 @@
+<div class="flex justify-content-center align-items-center h-screen">
+    <mat-card class="w-20rem">
+        <mat-card-header>
+            <h1>Iniciar Sesion</h1>
+        </mat-card-header>
+        
+        <mat-card-content>
+            <form class="example-form">
+                <mat-form-field appearance="outline" class="w-full">
+                    <mat-label>Rol</mat-label>
+                    <mat-select aria-label="Select your role">
+                      <mat-option value="Admin">Admin</mat-option>
+                      <mat-option value="Profesores">Profesores</mat-option>
+                      <mat-option value="Alumnos">Alumnos</mat-option>
+                    </mat-select>
+                    <mat-icon matPrefix>account_circle</mat-icon>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" class="w-full">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Enter your email" aria-label="Email address"/>
+                    <mat-icon matPrefix>mail</mat-icon>
+                  </mat-form-field>
+
+                <mat-form-field appearance="outline" class="w-full">
+                    <mat-label>Enter your password</mat-label>
+                    <input matInput [type]="hide() ? 'password' : 'text'" placeholder="Enter your password" aria-label="Password"/>
+                    <button
+                      mat-icon-button
+                      matSuffix
+                      (click)="clickEvent($event)"
+                      [attr.aria-label]="'Hide password'"
+                      [attr.aria-pressed]="hide()"
+                      type="button"
+                    >
+                      <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                  </mat-form-field>
+              </form>
+              <button mat-stroked-button type="submit">INGRESAR</button>
+        </mat-card-content>
+    </mat-card>
+</div>
