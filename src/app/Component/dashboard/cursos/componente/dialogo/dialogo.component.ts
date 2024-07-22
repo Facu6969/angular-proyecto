@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -12,7 +12,9 @@ export class DialogoComponent {
 
   constructor(private fb:FormBuilder, private matDialogRef: MatDialogRef<DialogoComponent>) {
     this.cursoForm = this.fb.group({
-      name: [],
+      name: [null, Validators.required], //estilos de error
+      startDate: [],
+      endDate: [],
     });
   }
 

@@ -13,8 +13,8 @@
 // Define the theme object.
 $pf-PabloFacundoFernandez-57210-theme: mat.define-theme((
   color: (
-    theme-type: light,
-    primary: mat.$azure-palette,
+    theme-type: dark,
+    primary: mat.$violet-palette,
     tertiary: mat.$blue-palette,
   ),
   density: (

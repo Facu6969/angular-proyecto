@@ -9,6 +9,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import { CursosModule } from './cursos/cursos.module';
+import {MatListModule} from '@angular/material/list';
+import { StudentsModule } from './students/students.module';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { CursosModule } from './cursos/cursos.module';
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    CursosModule
+    CursosModule,
+    MatListModule,
+    StudentsModule
   ]
 })
 export class DashboardModule { }

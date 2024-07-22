@@ -1,13 +1,12 @@
 <mat-drawer-container class="example-container" autosize>
     <!-- sideBar inicio --> 
-    <mat-drawer #drawer class="example-sidenav" mode="side">
-      <p >Auto-resizing sidenav</p>
-      @if (showFiller) {
-        <p>Lorem, ipsum dolor sit amet consectetur.</p>
-      }
-      <button (click)="showFiller = !showFiller" mat-raised-button>
-        Toggle extra text
-      </button>
+    <mat-drawer [opened]="true" #drawer class="example-sidenav" mode="side">
+      <mat-nav-list>
+        <a mat-list-item href="...">Inicio</a>
+        <a mat-list-item href="...">Cursos</a>
+        <a mat-list-item href="...">Alumnos</a>
+        <a mat-list-item href="...">Inscrpciones</a>
+      </mat-nav-list>
     </mat-drawer>
     <!--sideBar fin-->
 
@@ -21,13 +20,13 @@
             <span>My App</span>
             <span class="example-spacer"></span>
             
-            <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-              <mat-icon>share</mat-icon>
-            </button>
+            
           </mat-toolbar>
           <!--toolBar fin-->
           <main class="p-3">
-            <app-cursos />
+            <!-- <app-cursos /> -->
+             <!-- <app-pipes /> -->
+              <app-students />
           </main>
           
     </div>

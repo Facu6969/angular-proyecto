@@ -1,0 +1,22 @@
+<form [formGroup]="alumnoForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput placeholder="Ingresa tu nombre" formControlName="nombre">
+      
+    </mat-form-field>
+      
+    <mat-form-field>
+      <mat-label>Apellido</mat-label>
+      <input matInput placeholder="Ingresa tu apellido" formControlName="apellido">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Edad</mat-label>
+      <input matInput placeholder="Ingresa su edad" formControlName="edad" type="number">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Curso</mat-label>
+      <input matInput placeholder="Ingresa el curso" formControlName="curso">
+    </mat-form-field>
+    <button mat-raised-button type="submit">Guardar</button>
+  </form>
+  
