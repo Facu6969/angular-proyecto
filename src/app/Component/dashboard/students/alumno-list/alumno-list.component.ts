@@ -5,7 +5,7 @@ import { AlumnoService } from '../../students/alumno.service';
 @Component({
   selector: 'app-alumno-list',
   templateUrl: './alumno-list.component.html',
-  styleUrl: './alumno-list.component.scss'
+  styleUrls: ['./alumno-list.component.scss']
 })
 export class AlumnoListComponent implements OnInit{
   displayedColumns: String[] = ['id','nombre', 'apellido', 'edad', 'curso', 'actions'];
@@ -14,7 +14,10 @@ export class AlumnoListComponent implements OnInit{
   constructor(private alumnoService: AlumnoService) {}
 
   ngOnInit(): void {
-    this.alumnoService.getAlumnos().subscribe(data => this.alumnos = data);
+    this.alumnoService.getAlumnos().subscribe(
+      data => this.alumnos = data,
+      error => console.error('Error al obtener alumnos', error)
+    );
   }
 
   edit(alumno: Alumno): void {

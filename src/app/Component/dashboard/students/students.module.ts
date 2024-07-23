@@ -9,9 +9,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AlumnoListComponent } from './alumno-list/alumno-list.component';
 import { AlumnoFormComponent } from './alumno-form/alumno-form.component';
 import { AlumnoService } from './alumno.service';
-import { SharedModule } from '../../../shared/shared.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { SharedModule } from '../../../shared/utils/shared.module';
 
 
 @NgModule({
@@ -30,9 +30,9 @@ import { MatInputModule } from '@angular/material/input';
     MatTableModule,
     MatButtonModule,
     ReactiveFormsModule,
-    SharedModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    SharedModule
   ],
   providers: [
     AlumnoService
