@@ -9,10 +9,12 @@ import { LoginModule } from './Component/auth/login/login.module';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
+import { InscripcionesComponent } from './Component/dashboard/inscripciones/inscripciones.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    InscripcionesComponent
   ],
   imports: [
     BrowserModule,

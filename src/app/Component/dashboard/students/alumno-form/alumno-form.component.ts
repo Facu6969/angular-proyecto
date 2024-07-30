@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AlumnoService } from '../alumno.service';
 
 @Component({
   selector: 'app-alumno-form',
@@ -14,9 +13,9 @@ export class AlumnoFormComponent implements OnInit{
 
   ngOnInit(): void {
     this.alumnoForm = this.fb.group({
-      nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
-      edad: ['', Validators.required],
+      nombre: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$')]],
+      apellido: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$')]],
+      edad: ['', [Validators.required, Validators.min(18)]],
       curso: ['', Validators.required]
     });
   }
@@ -27,4 +26,8 @@ export class AlumnoFormComponent implements OnInit{
       this.alumnoForm.reset();
     }
   }
+  get nombre() { return this.alumnoForm.get('nombre'); }
+  get apellido() { return this.alumnoForm.get('apellido'); }
+  get edad() { return this.alumnoForm.get('edad'); }
+  get curso() { return this.alumnoForm.get('curso'); }
 }
