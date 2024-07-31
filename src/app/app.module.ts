@@ -4,25 +4,28 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { DashboardModule } from './Component/dashboard/dashboard.module';
 import { LoginModule } from './Component/auth/login/login.module';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
-import { InscripcionesComponent } from './Component/dashboard/inscripciones/inscripciones.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
+import { DashboardModule } from './Component/dashboard/dashboard.module';
+import { SharedModule } from './shared/utils/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    InscripcionesComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    DashboardModule,
     LoginModule,
     MatTableModule,
     MatButtonModule,
+    MatInputModule,
+    DashboardModule,
   ],
   providers: [
     provideAnimationsAsync(),

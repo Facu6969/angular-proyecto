@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { Alumno } from './alumno.model';
 
 @Injectable({
@@ -18,14 +18,17 @@ export class AlumnoService {
     
   ];
 
+  private alumnoEditSubject = new Subject<Alumno>();
+
   constructor() {}
 
   getAlumnos(): Observable<Alumno[]> {
     return of(this.alumnos);
   }
 
-  addAlumno(alumno: Alumno): void {
-    this.alumnos.push(alumno);
+  addAlumno(alumno: Omit<Alumno, 'id'>): void {
+    const newId = this.alumnos.length > 0 ? Math.max(...this.alumnos.map(a => a.id)) + 1 : 1;
+    this.alumnos.push({ id: newId, ...alumno });
   }
 
   updateAlumno(alumno: Alumno): void {
@@ -37,5 +40,13 @@ export class AlumnoService {
 
   deleteAlumno(id: number): void {
     this.alumnos = this.alumnos.filter(alumno => alumno.id !== id);
+  }
+  
+  getAlumnoEdit(): Observable<Alumno> {
+    return this.alumnoEditSubject.asObservable();
+  }
+
+  editAlumno(alumno: Alumno): void {
+    this.alumnoEditSubject.next(alumno);
   }
 }

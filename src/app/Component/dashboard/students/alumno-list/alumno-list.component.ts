@@ -21,7 +21,7 @@ export class AlumnoListComponent implements OnInit{
   }
 
   edit(alumno: Alumno): void {
-
+    this.alumnoService.editAlumno(alumno);
   }
 
   delete(id: number): void {

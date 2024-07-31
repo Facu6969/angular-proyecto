@@ -13,16 +13,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from '../../../shared/utils/shared.module';
 
-
 @NgModule({
   declarations: [
     StudentsComponent,
     AlumnoListComponent,
     AlumnoFormComponent,
 
-  ],
-  exports: [
-    StudentsComponent,
   ],
   imports: [
     CommonModule,

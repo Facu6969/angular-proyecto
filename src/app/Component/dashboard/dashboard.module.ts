@@ -10,16 +10,13 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import { CursosModule } from './cursos/cursos.module';
 import {MatListModule} from '@angular/material/list';
-import { StudentsModule } from './students/students.module';
-
+import { StudentsRoutingModule } from './students/students-routing.module';
 
 @NgModule({
   declarations: [
     DashboardComponent
   ],
-  exports: [
-    DashboardComponent
-  ],
+  
   imports: [
     CommonModule,
     DashboardRoutingModule,
@@ -30,7 +27,8 @@ import { StudentsModule } from './students/students.module';
     MatCardModule,
     CursosModule,
     MatListModule,
-    StudentsModule
+    StudentsRoutingModule
+
   ]
 })
 export class DashboardModule { }
