@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Alumno } from '../alumno.model';
-import { AlumnoService } from '../alumno.service';
+import { AlumnoService } from '../../../../core/services/alumno.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-alumno-form',
@@ -24,15 +25,19 @@ export class AlumnoFormComponent implements OnInit{
     });
 
     this.alumnoService.getAlumnoEdit().subscribe(alumno => {
-      this.alumnoId = alumno.id;
-      this.alumnoForm.patchValue(alumno);
+      if(alumno){
+        this.alumnoId = alumno.id;
+        this.alumnoForm.patchValue(alumno);
+      }
+      
     });
   }
 
   onSubmit(): void {
     if (this.alumnoForm.valid) {
       const alumno: Alumno = {
-        id: this.alumnoId ? this.alumnoId : this.alumnoService.getAlumnos().subscribe(alumnos => alumnos.length + 1),
+        id: this.alumnoId ? this.alumnoId : this.alumnoService.getAlumnos().pipe(map(alumnos => Math.max(...alumnos.map(a => a.id)) +1)
+      ),
         ...this.alumnoForm.value
       };
 

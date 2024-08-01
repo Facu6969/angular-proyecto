@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlumnoListComponent } from './alumno-list/alumno-list.component';
 import { AlumnoFormComponent } from './alumno-form/alumno-form.component';
-import { AlumnoService } from './alumno.service';
+import { AlumnoService } from '../../../core/services/alumno.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from '../../../shared/utils/shared.module';

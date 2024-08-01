@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, Subject } from 'rxjs';
-import { Alumno } from './alumno.model';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Alumno } from '../../Component/dashboard/students/alumno.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,31 +18,36 @@ export class AlumnoService {
     
   ];
 
-  private alumnoEditSubject = new Subject<Alumno>();
+  private alumnosSubject = new BehaviorSubject<Alumno[]>(this.alumnos);
+  private alumnoEditSubject = new BehaviorSubject<Alumno | null>(null);
 
   constructor() {}
 
   getAlumnos(): Observable<Alumno[]> {
-    return of(this.alumnos);
+    return this.alumnosSubject.asObservable();
   }
 
   addAlumno(alumno: Omit<Alumno, 'id'>): void {
     const newId = this.alumnos.length > 0 ? Math.max(...this.alumnos.map(a => a.id)) + 1 : 1;
-    this.alumnos.push({ id: newId, ...alumno });
+    const newAlumno: Alumno = { id: newId, ...alumno };
+    this.alumnos.push( newAlumno );
+    this.alumnosSubject.next(this.alumnos);//nuevo estado
   }
 
   updateAlumno(alumno: Alumno): void {
     const index = this.alumnos.findIndex(a => a.id === alumno.id);
     if (index !== -1) {
       this.alumnos[index] = alumno;
+      this.alumnosSubject.next(this.alumnos);//nuevo estado
     }
   }
 
   deleteAlumno(id: number): void {
     this.alumnos = this.alumnos.filter(alumno => alumno.id !== id);
+    this.alumnosSubject.next(this.alumnos); //nuevo estado
   }
-  
-  getAlumnoEdit(): Observable<Alumno> {
+
+  getAlumnoEdit(): Observable<Alumno | null> {
     return this.alumnoEditSubject.asObservable();
   }
 
