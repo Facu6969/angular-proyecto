@@ -1,0 +1,46 @@
+<h2 mat-dialog-title>{{ data.alumno ? 'Editar Alumno' : 'Agregar Alumno' }}</h2>
+<mat-dialog-content>
+  <form [formGroup]="alumnoForm" (ngSubmit)="onSave()" class="alumno-form">
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input matInput placeholder="Ingresa tu nombre" formControlName="nombre">
+      <mat-error *ngIf="alumnoForm.get('nombre')?.invalid && (alumnoForm.get('nombre')?.dirty || alumnoForm.get('nombre')?.touched)">
+        <span *ngIf="alumnoForm.get('nombre')?.errors?.['required']">El nombre es obligatorio.</span>
+        <span *ngIf="alumnoForm.get('nombre')?.errors?.['minlength']">El nombre debe tener al menos 3 caracteres.</span>
+        <span *ngIf="alumnoForm.get('nombre')?.errors?.['pattern']">El nombre no puede contener números.</span>
+      </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Apellido</mat-label>
+      <input matInput placeholder="Ingresa tu apellido" formControlName="apellido">
+      <mat-error *ngIf="alumnoForm.get('apellido')?.invalid && (alumnoForm.get('apellido')?.dirty || alumnoForm.get('apellido')?.touched)">
+        <span *ngIf="alumnoForm.get('apellido')?.errors?.['required']">El apellido es obligatorio.</span>
+        <span *ngIf="alumnoForm.get('apellido')?.errors?.['minlength']">El apellido debe tener al menos 3 caracteres.</span>
+        <span *ngIf="alumnoForm.get('apellido')?.errors?.['pattern']">El apellido no puede contener números.</span>
+      </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Edad</mat-label>
+      <input matInput placeholder="Ingresa su edad" formControlName="edad" type="number">
+      <mat-error *ngIf="alumnoForm.get('edad')?.invalid && (alumnoForm.get('edad')?.dirty || alumnoForm.get('edad')?.touched)">
+        <span *ngIf="alumnoForm.get('edad')?.errors?.['required']">La edad es obligatoria.</span>
+        <span *ngIf="alumnoForm.get('edad')?.errors?.['min']">La edad debe ser mayor de 18 años.</span>
+      </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Curso</mat-label>
+      <input matInput placeholder="Ingresa el curso" formControlName="curso">
+      <mat-error *ngIf="alumnoForm.get('curso')?.invalid && (alumnoForm.get('curso')?.dirty || alumnoForm.get('curso')?.touched)">
+        <span *ngIf="alumnoForm.get('curso')?.errors?.['required']">El curso es obligatorio.</span>
+      </mat-error>
+    </mat-form-field>
+    
+    <div class="button-group">
+      <button mat-raised-button color="primary" type="submit" [disabled]="alumnoForm.invalid">Guardar</button>
+      <button mat-raised-button type="button" (click)="onCancel()">Cancelar</button>
+    </div>
+  </form>
+</mat-dialog-content>

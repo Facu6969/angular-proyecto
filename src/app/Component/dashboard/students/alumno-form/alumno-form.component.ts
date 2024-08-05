@@ -1,55 +1,32 @@
+// alumno-form.component.ts
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Alumno } from '../alumno.model';
-import { AlumnoService } from '../../../../core/services/alumno.service';
-import { map } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { AlumnoModalFormComponent } from '../../../../shared/alumno-modal-form/alumno-modal-form.component';
 
 @Component({
   selector: 'app-alumno-form',
-  templateUrl: './alumno-form.component.html',
-  styleUrl: './alumno-form.component.scss'
+  template: '' 
 })
 
-export class AlumnoFormComponent implements OnInit{
-  alumnoForm!: FormGroup;
-  alumnoId: number | null = null;
-
-  constructor(private fb: FormBuilder, private alumnoService: AlumnoService) {}
+export class AlumnoFormComponent implements OnInit {
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.alumnoForm = this.fb.group({
-      nombre: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$')]],
-      apellido: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$')]],
-      edad: ['', [Validators.required, Validators.min(18)]],
-      curso: ['', Validators.required]
-    });
-
-    this.alumnoService.getAlumnoEdit().subscribe(alumno => {
-      if(alumno){
-        this.alumnoId = alumno.id;
-        this.alumnoForm.patchValue(alumno);
-      }
-      
-    });
+    this.openModal();
   }
 
-  onSubmit(): void {
-    if (this.alumnoForm.valid) {
-      const alumno: Alumno = {
-        id: this.alumnoId ? this.alumnoId : this.alumnoService.getAlumnos().pipe(map(alumnos => Math.max(...alumnos.map(a => a.id)) +1)
-      ),
-        ...this.alumnoForm.value
-      };
+  openModal(): void {
+    const dialogRef = this.dialog.open(AlumnoModalFormComponent, {
+      width: '400px',
+      data: { alumno: { id: null, nombre: '', apellido: '', edad: null, curso: '' } }
+    });
 
-      if (this.alumnoId) {
-        this.alumnoService.updateAlumno(alumno);
-      } else {
-        this.alumnoService.addAlumno(alumno);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Aquí puedes manejar el resultado del modal, por ejemplo, enviar el alumno a un servicio
+        console.log('Alumno agregado:', result);
       }
-      
-      this.alumnoForm.reset();
-      this.alumnoId = null;
-    }
+    });
   }
-  
 }

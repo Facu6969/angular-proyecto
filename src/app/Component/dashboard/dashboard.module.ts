@@ -27,7 +27,7 @@ import { StudentsRoutingModule } from './students/students-routing.module';
     MatCardModule,
     CursosModule,
     MatListModule,
-    StudentsRoutingModule
+    StudentsRoutingModule,
 
   ]
 })

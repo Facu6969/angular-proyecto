@@ -14,7 +14,7 @@ export class AlumnoService {
     { id: 5, nombre: 'Ana', apellido: 'Tylor', edad: 44, curso: 'Angular' },
     { id: 6, nombre: 'Sofia', apellido: 'Terry', edad: 22, curso: 'BackEnd' },
     { id: 7, nombre: 'Nahuel', apellido: 'Loscalzo', edad: 19, curso: 'FrontEnd' },
-    { id: 8, nombre: 'Wolder', apellido: 'Frey', edad: 80, curso: 'React' }
+    { id: 8, nombre: 'Walder', apellido: 'Frey', edad: 80, curso: 'React' }
     
   ];
 
@@ -30,21 +30,25 @@ export class AlumnoService {
   addAlumno(alumno: Omit<Alumno, 'id'>): void {
     const newId = this.alumnos.length > 0 ? Math.max(...this.alumnos.map(a => a.id)) + 1 : 1;
     const newAlumno: Alumno = { id: newId, ...alumno };
-    this.alumnos.push( newAlumno );
-    this.alumnosSubject.next(this.alumnos);//nuevo estado
+    this.alumnos = [...this.alumnos, newAlumno];  // Crear un nuevo array para forzar el cambio de detección
+    console.log('Alumno agregado:', newAlumno);
+    this.alumnosSubject.next(this.alumnos); // Notificar nuevo estado
   }
 
   updateAlumno(alumno: Alumno): void {
     const index = this.alumnos.findIndex(a => a.id === alumno.id);
     if (index !== -1) {
       this.alumnos[index] = alumno;
+      console.log('Alumno actualizado:', alumno);
+      this.alumnos = [...this.alumnos];  // Crear un nuevo array para forzar el cambio de detección
       this.alumnosSubject.next(this.alumnos);//nuevo estado
     }
   }
 
   deleteAlumno(id: number): void {
     this.alumnos = this.alumnos.filter(alumno => alumno.id !== id);
-    this.alumnosSubject.next(this.alumnos); //nuevo estado
+    console.log('Alumno eliminado:', id);
+    this.alumnosSubject.next(this.alumnos);
   }
 
   getAlumnoEdit(): Observable<Alumno | null> {

@@ -7,17 +7,18 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlumnoListComponent } from './alumno-list/alumno-list.component';
-import { AlumnoFormComponent } from './alumno-form/alumno-form.component';
 import { AlumnoService } from '../../../core/services/alumno.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
 import { SharedModule } from '../../../shared/utils/shared.module';
+import { AlumnoFormComponent } from './alumno-form/alumno-form.component';
 
 @NgModule({
   declarations: [
     StudentsComponent,
     AlumnoListComponent,
-    AlumnoFormComponent,
+    AlumnoFormComponent
 
   ],
   imports: [
@@ -28,6 +29,7 @@ import { SharedModule } from '../../../shared/utils/shared.module';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDialogModule,
     SharedModule
   ],
   providers: [

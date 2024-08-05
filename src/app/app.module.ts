@@ -11,7 +11,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { DashboardModule } from './Component/dashboard/dashboard.module';
-import { SharedModule } from './shared/utils/shared.module';
+import { RouterModule } from '@angular/router';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { SharedModule } from './shared/utils/shared.module';
     MatButtonModule,
     MatInputModule,
     DashboardModule,
+    MatDialogModule,
+    RouterModule,
   ],
   providers: [
     provideAnimationsAsync(),
