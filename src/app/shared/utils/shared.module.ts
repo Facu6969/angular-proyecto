@@ -9,6 +9,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlumnoModalFormComponent } from '../alumno-modal-form/alumno-modal-form.component';
+import { CursoModalFormComponent } from '../curso-modal-form/curso-modal-form.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -16,7 +20,8 @@ import { AlumnoModalFormComponent } from '../alumno-modal-form/alumno-modal-form
     CabeceraGrandeDirective,
     NombreCompletoPipe,
     ConfirmDialogComponent,
-    AlumnoModalFormComponent
+    AlumnoModalFormComponent,
+    CursoModalFormComponent
   ],
   imports: [
     CommonModule,
@@ -24,14 +29,18 @@ import { AlumnoModalFormComponent } from '../alumno-modal-form/alumno-modal-form
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatTableModule
 
   ],
   exports: [
     CabeceraGrandeDirective,
     NombreCompletoPipe,
     ConfirmDialogComponent,
-    AlumnoModalFormComponent
+    AlumnoModalFormComponent,
+    CursoModalFormComponent
   ]
 })
 export class SharedModule { }

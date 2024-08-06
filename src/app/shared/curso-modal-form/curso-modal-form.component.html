@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>{{ data.curso ? 'Editar Curso' : 'Agregar Curso' }}</h2>
+<mat-dialog-content>
+  <form [formGroup]="cursoForm" (ngSubmit)="onSave()">
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input matInput placeholder="Ingresa el nombre del curso" formControlName="nombre">
+      <mat-error *ngIf="cursoForm.get('nombre')?.invalid && (cursoForm.get('nombre')?.dirty || cursoForm.get('nombre')?.touched)">
+        <span *ngIf="cursoForm.get('nombre')?.errors?.['required']">El nombre es obligatorio.</span>
+      </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Descripción</mat-label>
+      <input matInput placeholder="Ingresa la descripción del curso" formControlName="descripcion">
+      <mat-error *ngIf="cursoForm.get('descripcion')?.invalid && (cursoForm.get('descripcion')?.dirty || cursoForm.get('descripcion')?.touched)">
+        <span *ngIf="cursoForm.get('descripcion')?.errors?.['required']">La descripción es obligatoria.</span>
+      </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Fecha inicio - Fecha Fin</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate formControlName="fechaInicio" placeholder="Fecha inicio" />
+        <input matEndDate formControlName="fechaFin" placeholder="Fecha fin" />
+      </mat-date-range-input>
+      <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+    
+    <button mat-raised-button type="submit" [disabled]="cursoForm.invalid">Guardar</button>
+    <button mat-raised-button type="button" (click)="onCancel()">Cancelar</button>
+  </form>
+</mat-dialog-content>

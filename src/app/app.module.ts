@@ -13,11 +13,14 @@ import { MatInputModule } from '@angular/material/input';
 import { DashboardModule } from './Component/dashboard/dashboard.module';
 import { RouterModule } from '@angular/router';
 import { MatDialogModule } from '@angular/material/dialog';
+import { StoreModule } from '@ngrx/store';
+import { SharedModule } from './shared/utils/shared.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     DashboardModule,
     MatDialogModule,
     RouterModule,
+    SharedModule,
+    StoreModule.forRoot({}, {}),
   ],
   providers: [
     provideAnimationsAsync(),

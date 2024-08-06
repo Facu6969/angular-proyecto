@@ -1,6 +1,6 @@
 // alumno-form.component.ts
 import { Component, OnInit } from '@angular/core';
-import { Alumno } from '../alumno.model';
+import { AlumnoService } from '../../../../core/services/alumno.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AlumnoModalFormComponent } from '../../../../shared/alumno-modal-form/alumno-modal-form.component';
 
@@ -10,7 +10,7 @@ import { AlumnoModalFormComponent } from '../../../../shared/alumno-modal-form/a
 })
 
 export class AlumnoFormComponent implements OnInit {
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private alumnoService: AlumnoService) {}
 
   ngOnInit(): void {
     this.openModal();
@@ -24,7 +24,7 @@ export class AlumnoFormComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // Aquí puedes manejar el resultado del modal, por ejemplo, enviar el alumno a un servicio
+        this.alumnoService.addAlumno(result);
         console.log('Alumno agregado:', result);
       }
     });

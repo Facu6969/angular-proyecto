@@ -15,4 +15,8 @@ export class ConfirmDialogComponent {
   onNoClick(): void{
     this.dialogRef.close();
   }
+
+  onYesClick(): void {
+    this.dialogRef.close(true);
+  }
 }
