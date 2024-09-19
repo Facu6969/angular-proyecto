@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Alumno } from '../../Component/dashboard/students/alumno.model';
+import { Alumno } from '../../Features/dashboard/students/alumno.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({

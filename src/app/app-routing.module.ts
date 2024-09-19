@@ -1,11 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './core/guards/auth.guard'; 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'auth', loadChildren: () => import('./Component/auth/auth.module').then(m => m.AuthModule) },
-  { path: 'dashboard', loadChildren: () => import('./Component/dashboard/dashboard.module').then(m => m.DashboardModule) },
-  { path: '**', redirectTo: '/dashboard' }
+  { 
+    path: 'auth', 
+    loadChildren: () => import('./Features/auth/auth.module').then(m => m.AuthModule) 
+  },
+  { 
+    path: 'dashboard',
+    canActivate: [AuthGuard], 
+    data: { role: 'Admin' },  // Solo los usuarios con el rol "Admin" pueden acceder
+    loadChildren: () => import('./Features/dashboard/dashboard.module').then(m => m.DashboardModule) 
+  },
+  { path: '**', redirectTo: '/auth' }
 ];
 
 @NgModule({

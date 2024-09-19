@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Alumno } from '../../Component/dashboard/students/alumno.model';
+import { Alumno } from '../../Features/dashboard/students/alumno.model';
 
 @Injectable({
   providedIn: 'root'

@@ -1,0 +1,46 @@
+<div class="login-container flex justify-content-center align-items-center h-screen">
+  <mat-card class="login-card w-20rem">
+      <mat-card-header>
+          <h1>Iniciar Sesión</h1>
+      </mat-card-header>
+      
+      <mat-card-content>
+          <!-- Agrega [formGroup]="loginForm" aquí -->
+          <form [formGroup]="loginForm" class="example-form" (ngSubmit)="onSubmit()">
+              <mat-form-field appearance="outline" class="w-full">
+                  <mat-label>Rol</mat-label>
+                  <mat-select formControlName="role" aria-label="Selecciona tu rol">
+                    <mat-option value="Admin">Admin</mat-option>
+                    <mat-option value="Profesores">Profesores</mat-option>
+                    <mat-option value="Alumnos">Alumnos</mat-option>
+                  </mat-select>
+                  <mat-icon matPrefix>account_circle</mat-icon>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="w-full">
+                  <mat-label>Email</mat-label>
+                  <input matInput formControlName="email" placeholder="Ingresa tu email" aria-label="Email address"/>
+                  <mat-icon matPrefix>mail</mat-icon>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="w-full">
+                  <mat-label>Contraseña</mat-label>
+                  <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" placeholder="Ingresa tu contraseña" aria-label="Password"/>
+                  <button
+                    mat-icon-button
+                    matSuffix
+                    (click)="toggleHide()"
+                    [attr.aria-label]="'Ocultar contraseña'"
+                    [attr.aria-pressed]="hide"
+                    type="button"
+                  >
+                    <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                  </button>
+              </mat-form-field>
+
+              <button mat-stroked-button color="primary" class="w-full" type="submit">INGRESAR</button>
+              <button mat-stroked-button color="accent" class="w-full" type="button" (click)="onRegister()">REGISTRARSE</button>
+          </form>
+      </mat-card-content>
+  </mat-card>
+</div>
